@@ -1,4 +1,4 @@
-class PlacesController < ApplicationController
+class BarsController < ApplicationController
 
   def new
 
