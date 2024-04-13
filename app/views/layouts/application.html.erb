@@ -14,7 +14,7 @@
     <header>
       <% if user_signed_in? %>
         <li>
-          <%= link_to "マイページ", comments_path %>
+          <%= link_to 'マイページ', comment_path(current_user.id) %>
         </li>
         <li>
           <%= link_to "Bar一覧", bars_path %>
