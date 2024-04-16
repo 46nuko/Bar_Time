@@ -5,7 +5,8 @@ class BarsController < ApplicationController
   end
 
   def index
-
+    @bar = Bar.find(params[:id])
+    @comments = @bar.comments
   end
 
   def show

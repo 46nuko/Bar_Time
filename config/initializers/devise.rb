@@ -30,7 +30,7 @@ Devise.setup do |config|
   # config.mailer = 'Devise::Mailer'
 
   # Configure the parent class responsible to send e-mails.
-  # config.parent_mailer = 'ActionMailer::Base'
+  # config.parent_mailer = 'ActionMailer::BarTimese'
 
   # ==> ORM configuration
   # Load and configure the ORM. Supports :active_record (default) and
@@ -84,7 +84,7 @@ Devise.setup do |config|
   # If 401 status code should be returned for AJAX requests. True by default.
   # config.http_authenticatable_on_xhr = true
 
-  # The realm used in Http Basic Authentication. 'Application' by default.
+  # The realm used in Http BarTimesic Authentication. 'Application' by default.
   # config.http_authentication_realm = 'Application'
 
   # It will change confirmation, password recovery and other workflows
