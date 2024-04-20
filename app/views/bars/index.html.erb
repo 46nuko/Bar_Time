@@ -1,8 +1,7 @@
 <h1>Bar一覧</h1>
-<% @comments.each do |comment| %>
+<% @bars.each do |bar| %>
   <div>
-    <p>タイトル：<%= comment.title %></p>
-    <p>内容：<%= comment.content %></p>
-    <p>タグ：<%= comment.tag_id %></p>
+    <p>タイトル：<%= bar.name %></p>
+    <p>タグ</p>
   </div>
 <% end %>
