@@ -1,7 +1,7 @@
 <h1>Bar一覧</h1>
 <% @bars.each do |bar| %>
   <div>
-    <p>タイトル：<%= bar.name %></p>
+    <p>タイトル：<%= link_to bar.name, bar_path(bar.id) %></p>
     <p>タグ</p>
   </div>
 <% end %>
