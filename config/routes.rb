@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   root to: "homes#top"
   namespace :users do
     get 'mypage', to: 'users#mypage'
+    get ':id', to: 'users#show'
   end
   post '/homes/guest_sign_in', to: 'homes#guest_sign_in'
   get '/homes/guest_sign_in', to: 'homes#guest_sign_in'
