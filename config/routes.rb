@@ -1,20 +1,28 @@
 Rails.application.routes.draw do
   root to: "homes#top"
-  namespace :users do
-    get 'mypage', to: 'users#mypage'
-    get ':id', to: 'users#show'
-  end
+
   post '/homes/guest_sign_in', to: 'homes#guest_sign_in'
   get '/homes/guest_sign_in', to: 'homes#guest_sign_in'
 
-  devise_for :users, skip: [:passwords],controllers: {
-  registrations: "users/registrations",
-  sessions: 'users/sessions'
-}
+   devise_for :users, skip: [:passwords], controllers: {
+    registrations: "users/registrations",
+    sessions: "users/sessions"
+  }
+
+  devise_scope :user do
+    get "/users/sign_out" => "devise/sessions#destroy"
+  end
 
 devise_for :admin, skip: [:registrations, :passwords], controllers: {
   sessions: "admins/sessions"
 }
+
+  namespace :users do
+    get 'mypage', to: 'users#mypage'
+    get ':id', to: 'users#show'
+    get ':id/edit', to: 'users#edit', as: 'edit_user'
+    patch ':id', to: 'users#update', as: 'update_user'
+  end
 
   resources :comments
   resources :bars, only: [:new, :create, :index, :show]

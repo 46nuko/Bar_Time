@@ -35,8 +35,8 @@ ActiveRecord::Schema.define(version: 2024_04_07_022836) do
     t.string "content"
     t.string "title"
     t.integer "user_id", null: false
-    t.integer "tag_id", null: false
-    t.integer "place_id", null: false
+    t.integer "tag_id"
+    t.integer "bar_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

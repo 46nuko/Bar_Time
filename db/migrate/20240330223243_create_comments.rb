@@ -4,8 +4,8 @@ class CreateComments < ActiveRecord::Migration[6.1]
       t.string :content
       t.string :title
       t.integer :user_id, null: false
-      t.integer :tag_id, null: false
-      t.integer :place_id, null: false
+      t.integer :tag_id
+      t.integer :bar_id
       t.timestamps
     end
   end

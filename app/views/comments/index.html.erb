@@ -1,0 +1,8 @@
+<% @comments.each do |comment| %>
+  <div>
+    <p>タイトル：<%= link_to comment.title, comment_path(comment) %></p>
+    <p>ユーザーネーム：<%= comment.user.name %></p>
+    <p>BAR名：<%= comment.bar.name %></p>
+   <p>投稿日：<%= comment.created_at.strftime('%Y/%m/%d') %></p>
+  </div>
+<% end %>

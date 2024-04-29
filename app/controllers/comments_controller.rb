@@ -7,7 +7,8 @@ class CommentsController < ApplicationController
   def create
     @comment = Comment.new(comment_params)
     @comment.user_id = current_user.id
-    @comment.save
+    @comment.bar_id = params[:comment][:bar_id]
+    @comment.save!
     redirect_to bars_path
   end
 
@@ -16,6 +17,7 @@ class CommentsController < ApplicationController
   end
 
   def show
+    @comment = Comment.find(params[:id])
   end
 
   private
