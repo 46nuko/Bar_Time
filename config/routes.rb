@@ -22,6 +22,8 @@ devise_for :admin, skip: [:registrations, :passwords], controllers: {
     get ':id', to: 'users#show'
     get ':id/edit', to: 'users#edit', as: 'edit_user'
     patch ':id', to: 'users#update', as: 'update_user'
+    get '/users/check', to: 'users#check'
+    patch  '/users/withdraw' => 'users#withdraw'
   end
 
   resources :comments
