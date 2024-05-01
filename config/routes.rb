@@ -19,11 +19,9 @@ devise_for :admin, skip: [:registrations, :passwords], controllers: {
 
   namespace :users do
     get 'mypage', to: 'users#mypage'
-    get ':id', to: 'users#show'
-    get ':id/edit', to: 'users#edit', as: 'edit_user'
-    patch ':id', to: 'users#update', as: 'update_user'
-    get '/users/check', to: 'users#check'
-    patch  '/users/withdraw' => 'users#withdraw'
+    get '/users/:id/check', to: 'users#check', as: 'check'
+    patch '/users/:id/withdraw', to: 'users#withdraw', as: 'withdraw'
+    resources :users, only: [:show, :edit, :update]
   end
 
   resources :comments
