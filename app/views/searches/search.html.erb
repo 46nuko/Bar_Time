@@ -1,0 +1,33 @@
+<h2>Results index</h2>
+
+<table class="table table-hover table-inverse">
+  <tbody>
+  <% if @range == "User" %>
+    <% if @comments.any? %>
+      <% @comments.each do |comment| %>
+        <tr>
+          <td><%= comment.title %></td>
+          <td><%= comment.content %></td>
+        </tr>
+      <% end %>
+    <% else %>
+      <tr>
+        <td colspan="2">検索結果がありません</td>
+      </tr>
+    <% end %>
+  <% else %>
+    <% if @bars.any? %>
+      <% @bars.each do |bar| %>
+        <tr>
+          <td><%= bar.name %></td>
+          <td><%= bar.address %></td>
+        </tr>
+      <% end %>
+    <% else %>
+      <tr>
+        <td colspan="2">検索結果がありません</td>
+      </tr>
+    <% end %>
+  <% end %>
+</tbody>
+</table>

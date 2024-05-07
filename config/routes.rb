@@ -13,10 +13,15 @@ Rails.application.routes.draw do
     get "/users/sign_out" => "devise/sessions#destroy"
   end
 
-devise_for :admin, skip: [:registrations, :passwords], controllers: {
-  sessions: "admins/sessions"
-}
+  devise_for :admin, skip: [:registrations, :passwords], controllers: {
+    sessions: "admins/sessions"
+  }
 
+  get 'search', to: 'searches#search'
+
+  namespace :admins do
+    resources :admins, only: [:index, :show, :edit]
+  end
   namespace :users do
     get 'mypage', to: 'users#mypage'
     get '/users/:id/check', to: 'users#check', as: 'check'

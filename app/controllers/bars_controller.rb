@@ -13,6 +13,13 @@ class BarsController < ApplicationController
 
   def index
     @bars = Bar.all
+    if params[:word].present?
+      bar_results = Bar.where("name LIKE ?", "%#{params[:search]}%")
+      comment_results = Comment.where("content LIKE ?", "%#{params[:search]}%")
+      @results = bar_results + comment_results
+    else
+      @results = []
+    end
   end
 
   def show

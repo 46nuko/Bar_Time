@@ -26,6 +26,10 @@
         <li>
           <%= link_to "退会ページ", users_check_path(current_user.id) %>
         </li>
+      <% elsif admin_signed_in? %>
+      　<li>
+          <%= link_to "ログアウト", destroy_admin_session_path, method: :delete %>
+        </li>
       <% else %>
         <li>
           <%= link_to "新規登録", new_user_registration_path %>
@@ -35,6 +39,9 @@
         </li>
         <li>
           <%= link_to "ゲストログイン（閲覧用）", homes_guest_sign_in_path, method: :post %>
+        </li>
+        <li>
+          <%= link_to "管理者ログイン", new_admin_session_path %>
         </li>
         <li>
           <%= link_to "BarTime一覧", bars_path %>
