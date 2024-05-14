@@ -2,32 +2,32 @@
 
 <table class="table table-hover table-inverse">
   <tbody>
-  <% if @range == "User" %>
-    <% if @comments.any? %>
+  <% if @range == "User" || @range == "Bar" %>
+    <% if @comments.present? && @comments.any? %>
       <% @comments.each do |comment| %>
         <tr>
           <td><%= comment.title %></td>
           <td><%= comment.content %></td>
         </tr>
       <% end %>
-    <% else %>
-      <tr>
-        <td colspan="2">検索結果がありません</td>
-      </tr>
     <% end %>
-  <% else %>
-    <% if @bars.any? %>
+  <% end %>
+
+  <% if @range == "Bar" %>
+    <% if @bars.present? && @bars.any? %>
       <% @bars.each do |bar| %>
         <tr>
           <td><%= bar.name %></td>
           <td><%= bar.address %></td>
         </tr>
+        <% bar.comments.each do |comment| %>
+          <tr>
+            <td><%= comment.title %></td>
+            <td><%= comment.content %></td>
+          </tr>
+        <% end %>
       <% end %>
-    <% else %>
-      <tr>
-        <td colspan="2">検索結果がありません</td>
-      </tr>
     <% end %>
   <% end %>
-</tbody>
+  </tbody>
 </table>
