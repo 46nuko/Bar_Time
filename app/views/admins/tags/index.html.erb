@@ -1,6 +1,8 @@
 <% @tags.each do |tag| %>
   <div>
     <p><%= tag.name %></p>
+    <p><%= link_to "Edit", edit_admins_tag_path(tag.id) %></p>
+    <p><%= link_to "Destroy", admins_tag_path(tag), method: :delete,"data-confirm" => "本当に削しますか？" %></p>
   </div>
 <% end %>
 

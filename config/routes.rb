@@ -21,7 +21,7 @@ Rails.application.routes.draw do
 
   namespace :admins do
     resources :admins, only: [:index, :show, :edit]
-    resources :tags, only:[:index, :create, :show, :edit, :update]
+    resources :tags, only:[:index, :create, :show, :edit, :update,:destroy]
   end
   namespace :users do
     get 'mypage', to: 'users#mypage'
