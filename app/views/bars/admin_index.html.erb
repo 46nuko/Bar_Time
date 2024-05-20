@@ -1,0 +1,18 @@
+<h1>管理者用Bar一覧</h1>
+<% @bars.each do |bar| %>
+  <div>
+    <p>タイトル：<%= bar.name %></p>
+    <p>タグ: <%= tag.name %></p>
+    <p><%= link_to "Edit", admin_edit_bars_path(bar.id) %></p>
+    <p><%= link_to "Destroy", admin_destroy_bars_path(bar), method: :delete,"data-confirm" => "本当に削しますか？" %></p>
+  </div>
+<% end %>
+
+<h1>投稿フォーム</h1>
+<%= form_with(model: @bar, url: admin_create_bars_path) do |form| %>
+  <p>bar名</p>
+  <%= form.text_field :name %>
+  <p>住所</p>
+  <%= form.text_field :address %>
+  <%= form.submit "投稿" %>
+<% end %>

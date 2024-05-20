@@ -29,5 +29,12 @@
       <% end %>
     <% end %>
   <% end %>
+  <% if @tag_results.present? && @tag_results.any? %>
+    <% @tag_results.each do |result| %>
+      <tr>
+        <td><%= tag.name %></td>
+      </tr>
+    <% end %>
+  <% end %>
   </tbody>
 </table>

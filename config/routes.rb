@@ -31,7 +31,14 @@ Rails.application.routes.draw do
   end
 
   resources :comments
-  resources :bars, only: [:new, :create, :index, :show]
-
+  resources :bars, only: [:new, :create, :index, :show] do
+     collection do
+      get :admin_index
+      get 'admin_edit/:id', to: 'bars#admin_edit', as: 'admin_edit'
+      delete 'admin_destroy/:id', to: 'bars#admin_destroy', as: 'admin_destroy'
+      post :admin_create
+      patch 'admin_update/:id', to: 'bars#admin_update', as: 'admin_update'
+    end
+  end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

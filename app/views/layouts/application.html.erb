@@ -33,6 +33,9 @@
         <li>
           <%= link_to "タグ一覧", admins_tags_path %>
         </li>
+        <li>
+          <%= link_to "Bar一覧", admin_index_bars_path %>
+        </li>
       <% else %>
         <li>
           <%= link_to "新規登録", new_user_registration_path %>
@@ -47,7 +50,7 @@
           <%= link_to "管理者ログイン", new_admin_session_path %>
         </li>
         <li>
-          <%= link_to "BarTime一覧", bars_path %>
+          <%= link_to "Bar一覧", bars_path %>
         </li>
       <% end %>
         </ul>
