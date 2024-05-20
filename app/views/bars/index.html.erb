@@ -2,7 +2,7 @@
 <% @bars.each do |bar| %>
   <div>
     <p>タイトル：<%= link_to bar.name, bar_path(bar.id) %></p>
-    <p>タグ<%= tag.name %></p>
+    <p>タグ<%= bar.tags.pluck(:name).join("") %></p>
   </div>
 <% end %>
 

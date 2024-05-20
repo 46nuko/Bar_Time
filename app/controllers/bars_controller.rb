@@ -34,7 +34,9 @@ class BarsController < ApplicationController
 
   def admin_create
     @bar = Bar.new(bar_params)
-    @bar.save
+    @bar.save!
+    bar_tag = BarTag.new(bar_id: @bar.id, tag_id: params[:bar][:tag_id])
+    bar_tag.save!
     redirect_to admin_index_bars_path
   end
 

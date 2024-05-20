@@ -2,9 +2,23 @@
 
 <table class="table table-hover table-inverse">
   <tbody>
-  <% if @range == "User" || @range == "Bar" %>
-    <% if @comments.present? && @comments.any? %>
-      <% @comments.each do |comment| %>
+  <% if @range == "User" %>
+  <% if @comments.present? && @comments.any? %>
+    <% @comments.each do |comment| %>
+      <tr>
+        <td><%= comment.title %></td>
+        <td><%= comment.content %></td>
+      </tr>
+    <% end %>
+  <% end %>
+<% elsif @range == "Bar" %>
+  <% if @bars.present? && @bars.any? %>
+    <% @bars.each do |bar| %>
+      <tr>
+        <td><%= bar.name %></td>
+        <td><%= bar.address %></td>
+      </tr>
+      <% bar.comments.each do |comment| %>
         <tr>
           <td><%= comment.title %></td>
           <td><%= comment.content %></td>
@@ -12,29 +26,18 @@
       <% end %>
     <% end %>
   <% end %>
-
-  <% if @range == "Bar" %>
-    <% if @bars.present? && @bars.any? %>
-      <% @bars.each do |bar| %>
-        <tr>
-          <td><%= bar.name %></td>
-          <td><%= bar.address %></td>
-        </tr>
-        <% bar.comments.each do |comment| %>
-          <tr>
-            <td><%= comment.title %></td>
-            <td><%= comment.content %></td>
-          </tr>
-        <% end %>
-      <% end %>
-    <% end %>
-  <% end %>
-  <% if @tag_results.present? && @tag_results.any? %>
-    <% @tag_results.each do |result| %>
+<% elsif @range == "Tag" %>
+  <% if @tags.present? && @tags.any? %>
+    <% @tags.each do |tag| %>
       <tr>
         <td><%= tag.name %></td>
       </tr>
     <% end %>
   <% end %>
+<% else %>
+  <tr>
+    <td colspan="2">バーが見つかりませんでした</td>
+  </tr>
+<% end %>
   </tbody>
 </table>
