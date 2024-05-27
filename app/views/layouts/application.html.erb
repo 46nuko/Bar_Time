@@ -13,48 +13,57 @@
 
   <body>
     <header>
-      <% if user_signed_in? %>
-        <li>
-          <%= link_to 'マイページ',  users_mypage_path %>
-        </li>
-        <li>
-          <%= link_to "Bar一覧", bars_path %>
-        </li>
-        <li>
-          <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
-        </li>
-        <li>
-          <%= link_to "退会ページ", users_check_path(current_user.id) %>
-        </li>
-      <% elsif admin_signed_in? %>
-      　<li>
-          <%= link_to "ログアウト", destroy_admin_session_path, method: :delete %>
-        </li>
-        <li>
-          <%= link_to "タグ一覧", admins_tags_path %>
-        </li>
-        <li>
-          <%= link_to "Bar一覧", admin_index_bars_path %>
-        </li>
-      <% else %>
-        <li>
-          <%= link_to "新規登録", new_user_registration_path %>
-        </li>
-        <li>
-          <%= link_to "ログイン", new_user_session_path %>
-        </li>
-        <li>
-          <%= link_to "ゲストログイン（閲覧用）", homes_guest_sign_in_path, method: :post %>
-        </li>
-        <li>
-          <%= link_to "管理者ログイン", new_admin_session_path %>
-        </li>
-        <li>
-          <%= link_to "Bar一覧", bars_path %>
-        </li>
-      <% end %>
-        </ul>
-      </div>
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+            <div class="navbar-collapse collapse show " id="navbarNavDropdown"style>
+              <ul class="navbar-nav ml-auto">
+                <% if user_signed_in? %>
+                  <li class="nav-link text-light">
+                    <%= link_to 'マイページ',  users_mypage_path,class:"text-light" %>
+                  </li>
+                  <li class="nav-link text-light">
+                    <%= link_to "Bar一覧", bars_path,class:"text-light" %>
+                  </li>
+                  <li class="nav-link text-light">
+                    <%= link_to "ログアウト", destroy_user_session_path, method: :delete,class:"text-light" %>
+                  </li>
+                  <li class="nav-link text-light">
+                    <%= link_to "退会ページ", users_check_path(current_user.id),class:"text-light" %>
+                  </li>
+                <% elsif admin_signed_in? %>
+      　          <li class="nav-link text-light">
+                    <%= link_to "ログアウト", destroy_admin_session_path, method: :delete,class:"text-light" %>
+                  </li>
+                  <li class="nav-link text-light">
+                    <%= link_to "タグ一覧", admins_tags_path,class:"text-light" %>
+                  </li>
+                  <li class="nav-link text-light">
+                    <%= link_to "Bar一覧", admin_index_bars_path,class:"text-light" %>
+                  </li>
+                <% else %>
+                  <li class="nav-link text-light">
+                    <%= link_to "新規登録", new_user_registration_path,class:"text-light" %>
+                  </li>
+                  <li class="nav-link text-light">
+                    <%= link_to "ログイン", new_user_session_path,class:"text-light" %>
+                  </li>
+                  <li class="nav-link text-light">
+                    <%= link_to "ゲストログイン（閲覧用）", homes_guest_sign_in_path, method: :post,class:"text-light" %>
+                  </li>
+                  <li class="nav-link text-light">
+                    <%= link_to "管理者ログイン", new_admin_session_path,class:"text-light" %>
+                  </li>
+                  <li class="nav-link text-light">
+                    <%= link_to "Bar一覧", bars_path,class:"text-light" %>
+                  </li>
+                <% end %>
+              </ul>
+            </div>
+          </div>
+        </nav>
     </header>
     <%= yield %>
   </body>

@@ -1,16 +1,46 @@
-<h1>Bar一覧</h1>
-<% @bars.each do |bar| %>
-  <div>
-    <p>タイトル：<%= link_to bar.name, bar_path(bar.id) %></p>
-    <p>タグ<%= bar.tags.pluck(:name).join("") %></p>
+<div class="container">
+  <div class="row">
+    <div class="col-md-10">
+      <div class="d-flex justify-content-between align-items-center">
+        <h1>Bar一覧</h1>
+        <div class="col-md-10">
+          <div class="search_form mb-4">
+            <%= form_with url: search_path, local: true, method: :get, class: "form-inline" do |f| %>
+              <div class="form-group">
+                <%= f.text_field :word, class: "form-control", placeholder: "検索するキーワードを入力してください" %>
+              </div>
+              <div class="form-group">
+                <%= f.select :range, options_for_select([['Comment'], ['Bar'], ['Tag']]), class: "form-control" %>
+              </div>
+              <div class="form-group">
+                <%= f.select :search, options_for_select([["部分一致","partial_match"]]), class: "form-control" %>
+              </div>
+                <%= f.submit "検索", class: "btn btn-primary" %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <table class="table">
+        <tbody>
+          <tr>
+            <th>BAR名</th>
+            <th>タグ</th>
+          </tr>
+        <% @bars.each do |bar| %>
+          <tr>
+            <td>
+              <%= link_to bar.name, bar_path(bar.id) %>
+            </td>
+            <td>
+              <%= bar.tags.pluck(:name).join("") %>
+            </td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+      <div class="col-md-12 d-flex justify-content-end align-self-end">
+        <%= paginate @bars %>
+      </div>
+    </div>
   </div>
-<% end %>
-
-<div class="search_form">
-    <%= form_with url: search_path, local: true, method: :get do |f| %>
-      <%= f.text_field :word %>
-      <%= f.select :range, options_for_select([['Comment'], ['Bar'],['Tag']]) %>
-      <%= f.select :search, options_for_select([["部分一致","partial_match"]]) %>
-      <%= f.submit "検索", class: "btn btn-primary" %>
-    <% end %>
 </div>

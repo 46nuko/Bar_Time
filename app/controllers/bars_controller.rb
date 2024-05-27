@@ -12,7 +12,7 @@ class BarsController < ApplicationController
   end
 
   def index
-    @bars = Bar.all
+    @bars = Bar.all.page(params[:page])
     if params[:word].present?
       bar_results = Bar.where("name LIKE ?", "%#{params[:search]}%")
       comment_results = Comment.where("content LIKE ?", "%#{params[:search]}%")
@@ -25,6 +25,7 @@ class BarsController < ApplicationController
 
   def show
     @bar = Bar.find(params[:id])
+    @comments = @bar.comments
   end
 
   def admin_index

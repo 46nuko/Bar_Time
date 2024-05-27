@@ -2,6 +2,7 @@ class Users::UsersController < ApplicationController
 
   def mypage
     @user = current_user
+    @comments = @user.comments
   end
 
   def edit

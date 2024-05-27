@@ -31,7 +31,7 @@ Rails.application.routes.draw do
   end
 
   resources :comments
-  resources :bars, only: [:new, :create, :index, :show] do
+  resources :bars, only: [:create, :index, :show] do
      collection do
       get :admin_index
       get 'admin_edit/:id', to: 'bars#admin_edit', as: 'admin_edit'
