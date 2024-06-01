@@ -2,5 +2,5 @@
 <%= form_with model: [:admins, @tag] do |f| %>
   <label for="inputName">Tag</label>
   <%= f.text_field :name, autofocus: true, id:"inputName", placeholder:"タグ名"%>
-  <%= f.submit "変更を保存" %>
+  <%= f.submit "変更を保存", class: "btn btn-primary" %>
 <% end %>

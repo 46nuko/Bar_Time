@@ -1,8 +1,12 @@
 <div>
-  <p>BAR名：<%= @comment.bar.name %></p>
-  <p>コメント<%= @comment.content %></p>
-  <p><%= link_to '投稿する', new_comment_path %></p>
-  <p>住所 : <%= @comment.bar.address %></p>
+  <h1><%= @comment.bar.name %></h1>
+  <h3><%= @comment.bar.address %></h3>
+  <p>タイトル:<%= @comment.title %></p>
+  <p>コメント:<%= @comment.content %></p>
+     <% if @user == current_user %>
+       <%= link_to "削除する", comment_path(@comment), method: :delete,class:"btn btn-sm btn-danger" %>
+       <%= link_to '編集する', edit_comment_path, class:"btn btn-sm btn-success" %>
+     <% end %>
   <p>評価 :<%= @comment.star%>点</p>
     <div id="star-rate<%= @comment.id%>"></div>
     <script>

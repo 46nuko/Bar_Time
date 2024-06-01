@@ -1,31 +1,29 @@
 <h1>ユーザー一覧</h1>
 
-<table>
+<table class="table">
 
   <tr>
-
     <th>ID</th>
-
     <th>名前</th>
-
     <th>メールアドレス</th>
-
     <th>退会ステータス</th>
-
   </tr>
 
   <% @users.each do |user| %>
 
     <tr>
-
-      <td><%= user.id %></td>
-
-      <td><%= user.name %></td>
-
-      <td><%= user.email %></td>
-
-      <td><%= user.is_deleted ? "退会済み" : "会員" %></td>
-
+      <td>
+        <%= user.id %>
+      </td>
+      <td>
+        <%= user.name %>
+      </td>
+      <td>
+        <%= user.email %>
+      </td>
+      <td>
+        <%= user.is_deleted ? "退会済み" : "会員" %>
+      </td>
     </tr>
 
   <% end %>

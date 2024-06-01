@@ -2,34 +2,37 @@
   <h1>BAR名：<%= @bar.name %></h1>
   <h3>住所 : <%= @bar.address %></h3>
 </div>
-    <table class="table">
-      <tbody>
+  <table class="table">
+    <tbody>
+      <tr>
+        <th>投稿日</th>
+        <th>ユーザー名</th>
+        <th>タイトル</th>
+        <th>コメント</th>
+      </tr>
+      <% @comments.each do |comment| %>
         <tr>
-          <th>タイトル</th>
-          <th>コメント</th>
-          <th>ユーザー名</th>
-          <th>投稿日</th>
+          <td>
+            <%= comment.created_at.strftime('%Y/%m/%d') %>
+          </td>
+          <td>
+            <% if current_user && current_user.id == comment.user.id %>
+              <%= link_to comment.user.name, users_mypage_path(comment.user) %>
+            <% else %>
+              <%= link_to comment.user.name,  users_user_path(comment.user) %>
+            <% end %>
+          </td>
+          <td>
+            <%= link_to comment.title, comment_path(comment.id) %>
+          </td>
+          <td>
+            <%= comment.content %>
+          </td>
         </tr>
-        <% @comments.each do |comment| %>
-          <tr>
-            <td>
-              <%= comment.title %>
-            </td>
-            <td>
-              <%= comment.content %>
-            </td>
-            <td>
-              <% if current_user && current_user.id == comment.user.id %>
-                <%= link_to comment.user.name, users_mypage_path(comment.user) %>
-              <% else %>
-                <%= link_to comment.user.name,  users_user_path(comment.user) %>
-              <% end %>
-            <td>
-            <td>
-              <%= comment.created_at.strftime('%Y/%m/%d') %>
-            </td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
-  <p><%= link_to '投稿する', new_comment_path %></p>
+      <% end %>
+    </tbody>
+  </table>
+  <p>
+    <%= link_to '投稿する', new_comment_path, class: "btn btn-primary"  %>
+  </p>
+  <%= link_to "戻る", bars_path %>

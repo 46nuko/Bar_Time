@@ -21,7 +21,7 @@ Rails.application.routes.draw do
 
   namespace :admins do
     resources :admins, only: [:index, :show, :edit]
-    resources :tags, only:[:index, :create, :show, :edit, :update,:destroy]
+    resources :tags, only:[:index, :create, :show, :edit, :update, :destroy]
   end
   namespace :users do
     get 'mypage', to: 'users#mypage'
@@ -30,8 +30,8 @@ Rails.application.routes.draw do
     resources :users, only: [:show, :edit, :update]
   end
 
-  resources :comments
-  resources :bars, only: [:create, :index, :show] do
+  resources :comments, only: [:new, :index, :create, :show, :edit, :update, :destroy]
+  resources :bars, only: [:index, :show] do
      collection do
       get :admin_index
       get 'admin_edit/:id', to: 'bars#admin_edit', as: 'admin_edit'
