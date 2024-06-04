@@ -13,15 +13,18 @@
     <%= f.label :star,'評価 ', class:'col-md-3 col-form-label' %>
     <%= f.hidden_field :star, id: :review_star %>
 　</div>
-  <script>
-    $('#star').empty();
-    new Raty(document.querySelector('#star'), {
-      size     : 36,
-      starOff:  '<%= asset_path('star-off.png') %>',
-      starOn : '<%= asset_path('star-on.png') %>',
-      scoreName: 'comment[star]',
-      half: false
-    });
-  </script>
+  <div class="form-group position-static">
+    <div id="post_raty"></div>
+      <script>
+          var elem = document.querySelector('#post_raty');
+          var opt = {
+            starOff   : '<%= asset_path('star-off.png') %>',
+            starOn    : '<%= asset_path('star-on.png') %>',
+            half      : '<%= asset_path('star-half.png') %>',
+            readOnly  : false,
+          };
+          raty(elem,opt);
+      </script>
+  </div>
 <% end %>
 <%= link_to "戻る", bars_path %>

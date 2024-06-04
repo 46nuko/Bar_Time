@@ -41,6 +41,6 @@ class CommentsController < ApplicationController
   private
 
   def comment_params
-    params.require(:comment).permit(:title,:content,:sta)
+    params.require(:comment).permit(:title,:content,:star)
   end
 end

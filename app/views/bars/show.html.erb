@@ -9,6 +9,7 @@
         <th>ユーザー名</th>
         <th>タイトル</th>
         <th>コメント</th>
+        <th>評価</th>
       </tr>
       <% @comments.each do |comment| %>
         <tr>
@@ -28,11 +29,23 @@
           <td>
             <%= comment.content %>
           </td>
+          <td>
+             <div id="show_star-<%= comment.id %>"></div>
+            <script>
+              var elem = document.querySelector('#show_star-<%= comment.id %>');
+              var opt = {
+                starOff   : '<%= asset_path('star-off.png') %>',
+                starOn    : '<%= asset_path('star-on.png') %>',
+                half      : '<%= asset_path('star-half.png') %>',
+                readOnly  : true,
+                score     : <%= comment.star %>
+                };
+                raty(elem,opt);
+            </script>
+          </td>
         </tr>
       <% end %>
     </tbody>
   </table>
-  <p>
-    <%= link_to '投稿する', new_comment_path, class: "btn btn-primary"  %>
-  </p>
+
   <%= link_to "戻る", bars_path %>

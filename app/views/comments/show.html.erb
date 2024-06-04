@@ -3,22 +3,24 @@
   <h3><%= @comment.bar.address %></h3>
   <p>タイトル:<%= @comment.title %></p>
   <p>コメント:<%= @comment.content %></p>
-     <% if @user == current_user %>
-       <%= link_to "削除する", comment_path(@comment), method: :delete,class:"btn btn-sm btn-danger" %>
-       <%= link_to '編集する', edit_comment_path, class:"btn btn-sm btn-success" %>
-     <% end %>
+
   <p>評価 :<%= @comment.star%>点</p>
-    <div id="star-rate<%= @comment.id%>"></div>
+    <div id="show_star-<%= @comment.id %>"></div>
     <script>
-      $('#star-rate<%= @comment.id%>').raty({
-        size      : 36,
+      var elem = document.querySelector('#show_star-<%= @comment.id %>');
+      var opt = {
         starOff   : '<%= asset_path('star-off.png') %>',
         starOn    : '<%= asset_path('star-on.png') %>',
-        half      : false,
-        readOnly: true,
-        score: <%= @comment.star %>,
-      });
+        half      : '<%= asset_path('star-half.png') %>',
+        readOnly  : true,
+        score     : <%= @comment.star %>
+        };
+      raty(elem,opt);
     </script>
-  </div>
+    </div>
+    <% if @user == current_user %>
+       <%= link_to "削除する", comment_path(@comment), method: :delete,class:"btn btn-sm btn-danger" %>
+       <%= link_to '編集する', edit_comment_path, class:"btn btn-sm btn-success" %>
+    <% end %>
   <p>投稿日：<%= @comment.created_at.strftime('%Y/%m/%d') %></p>
 </div>

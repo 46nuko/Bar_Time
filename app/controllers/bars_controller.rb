@@ -22,7 +22,7 @@ class BarsController < ApplicationController
     @bars = Bar.all
   end
 
-  def admin_create
+  def create
     @bar = Bar.new(bar_params)
     @bar.save!
     bar_tag = BarTag.new(bar_id: @bar.id, tag_id: params[:bar][:tag_id])
@@ -37,7 +37,7 @@ class BarsController < ApplicationController
   end
 
   def admin_edit
-    @bar = Bar.find(params[:id])
+   @bar = Bar.find(params[:id])
   end
 
   def admin_update
@@ -51,4 +51,5 @@ class BarsController < ApplicationController
   def bar_params
     params.require(:bar).permit(:name,:address)
   end
+
 end

@@ -31,12 +31,11 @@ Rails.application.routes.draw do
   end
 
   resources :comments, only: [:new, :index, :create, :show, :edit, :update, :destroy]
-  resources :bars, only: [:index, :show] do
+  resources :bars, only: [:index, :show, :create] do
      collection do
       get :admin_index
       get 'admin_edit/:id', to: 'bars#admin_edit', as: 'admin_edit'
       delete 'admin_destroy/:id', to: 'bars#admin_destroy', as: 'admin_destroy'
-      post :admin_create
       patch 'admin_update/:id', to: 'bars#admin_update', as: 'admin_update'
     end
   end
