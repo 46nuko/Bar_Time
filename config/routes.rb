@@ -30,7 +30,13 @@ Rails.application.routes.draw do
     resources :users, only: [:show, :edit, :update]
   end
 
-  resources :comments, only: [:new, :index, :create, :show, :edit, :update, :destroy]
+  resources :comments, only: [:new, :index, :create, :show, :edit, :update, :destroy] do
+    collection do
+      get :admin_index
+      delete 'admin_destroy/:id', to: 'comments#admin_destroy', as: 'admin_destroy'
+    end
+  end
+
   resources :bars, only: [:index, :show, :create] do
      collection do
       get :admin_index

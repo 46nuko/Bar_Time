@@ -3,7 +3,7 @@ class SearchesController < ApplicationController
   def search
     @range = params[:range]
     @word = params[:word]
-    if @range == "User"
+    if @range == "Comment"
       @comments = Comment.looks(params[:search], params[:word])
     elsif @range == "Tag"
       @tags = Tag.looks(params[:search], params[:word])

@@ -1,0 +1,41 @@
+<div class="container mt-5">
+<h3>レビューコメント一覧</h3>
+<table class="table mt-3">
+  <tr>
+    <th>名前</th>
+    <th>コメント</th>
+    <th>bar名</th>
+    <th>評価</th>
+    <th>投稿日</th>
+    <th></th>
+  </tr>
+<% @comments.each do |comment| %>
+  <tr>
+    <td><%= @users.find(comment.user_id).name %></td>
+    <td><%= comment.content %></td>
+    <td><%= comment.bar.name %></td>
+    <td>
+      <div id="show_star-<%= comment.id %>"></div>
+        <script>
+          var elem = document.querySelector('#show_star-<%= comment.id %>');
+          var opt = {
+            starOff   : '<%= asset_path('star-off.png') %>',
+            starOn    : '<%= asset_path('star-on.png') %>',
+            half      : '<%= asset_path('star-half.png') %>',
+            readOnly  : true,
+            score     : <%= comment.star %>
+          };
+          raty(elem,opt);
+        </script>
+    </td>
+    <td>
+      <%= comment.created_at.strftime('%Y/%m/%d') %>
+      </td>
+    <td>
+      <%= link_to '削除', admin_destroy_comments_path(comment), method: :delete, data: { confirm: '本当に削除しますか?' },class: "btn btn-sm btn-danger" %>
+    </td>
+  </tr>
+<% end %>
+</table>
+
+</div>

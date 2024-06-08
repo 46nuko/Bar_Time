@@ -8,8 +8,13 @@ class CommentsController < ApplicationController
     @comment = Comment.new(comment_params)
     @comment.user_id = current_user.id
     @comment.bar_id = params[:comment][:bar_id]
-    @comment.save!
-    redirect_to bars_path
+    #byebug
+    if @comment.save
+      redirect_to bars_path, notice: "コメントが投稿されました"
+    else
+      flash.now[:alert] = "コメントの投稿に失敗しました"
+      render :new
+    end
   end
 
   def index
@@ -37,10 +42,20 @@ class CommentsController < ApplicationController
     redirect_to comment_path
   end
 
+def admin_index
+  @comments = Comment.all
+  @users = User.all
+end
+
+def admin_destroy
+  comment = Comment.find(params[:id])
+  comment.destroy
+  redirect_to admin_index_comments_path
+end
 
   private
 
   def comment_params
-    params.require(:comment).permit(:title,:content,:star)
+    params.require(:comment).permit(:bar_id, :tag_id, :title, :content, :star)
   end
 end
