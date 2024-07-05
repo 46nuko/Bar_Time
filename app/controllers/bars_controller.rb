@@ -24,10 +24,14 @@ class BarsController < ApplicationController
 
   def create
     @bar = Bar.new(bar_params)
-    @bar.save!
+    if @bar.save
     bar_tag = BarTag.new(bar_id: @bar.id, tag_id: params[:bar][:tag_id])
-    bar_tag.save!
+    bar_tag.save
     redirect_to admin_index_bars_path
+    else
+      @bars = Bar.all
+      render :admin_index
+    end
   end
 
   def admin_destroy

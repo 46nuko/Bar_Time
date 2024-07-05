@@ -8,7 +8,6 @@ class CommentsController < ApplicationController
     @comment = Comment.new(comment_params)
     @comment.user_id = current_user.id
     @comment.bar_id = params[:comment][:bar_id]
-    #byebug
     if @comment.save
       redirect_to bars_path, notice: "コメントが投稿されました"
     else

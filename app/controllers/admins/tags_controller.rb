@@ -7,8 +7,13 @@ class Admins::TagsController < ApplicationController
 
   def create
     @tag = Tag.new(tag_params)
-    @tag.save
-    redirect_to admins_tags_path
+    if @tag.save
+      redirect_to admins_tags_path, notice: "タグが作成されました"
+    else
+      flash.now[:alert] = "タグの作成に失敗しました"
+      @tags = Tag.all
+      render :index
+    end
   end
 
   def show
